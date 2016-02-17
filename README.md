@@ -7,3 +7,6 @@ Usage: node DriveSize.js directory_name
 Purpose: Determines total size of the directory.
 
 Why: Because I want to, that's why.
+
+### Install
+run `npm install` in the cloned directory.
