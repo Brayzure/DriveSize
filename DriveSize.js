@@ -12,16 +12,23 @@ function iter(level,path){
 	}
 	for(var i=0;i<contents.length;i++){
 		var file = path + "\\" + contents[i];
-		if(!isForbidden(file)){
-			stats = fs.statSync(file);
-			if(stats.isDirectory()){
-				//console.log(buffer + file);
-				iter(level+1,file);
+		if(!isForbidden(file) || file.slice(3) == "System Volume Information"){
+			try{
+				stats = fs.statSync(file);
+				if(stats.isDirectory()){
+					//console.log(buffer + file);
+					iter(level+1,file);
+				}
+				else{
+					var size = stats["size"];
+					total += size;
+					//console.log(buffer + size);
+				}
 			}
-			else{
-				var size = stats["size"];
-				total += size;
-				//console.log(buffer + size);
+			catch (e){
+				if(!(e.code == 'ENOENT' || e.code == 'EPERM' || e.code == 'EBUSY')){
+					throw e;
+				}
 			}
 		}
 	}
@@ -32,7 +39,7 @@ function iter(level,path){
 }
 
 function isForbidden(filePath){
-	var test = filePath.slice(3)
+	var test = filePath.slice(3);
 	if(test == "System Volume Information"){
 		return 1;
 	}
