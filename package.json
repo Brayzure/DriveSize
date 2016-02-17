@@ -1,0 +1,18 @@
+{
+  "name": "drivesize",
+  "version": "1.0.0",
+  "description": "Determines total size of the directory.  Why?  Because I want to, that's why.",
+  "main": "DriveSize.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brayzure/DriveSize.git"
+  },
+  "author": "Brayzure",
+  "bugs": {
+    "url": "https://github.com/Brayzure/DriveSize/issues"
+  },
+  "homepage": "https://github.com/Brayzure/DriveSize#readme",
+  "dependencies": {
+    "graceful-fs": "^4.1.3"
+  }
+}
