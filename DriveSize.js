@@ -12,21 +12,31 @@ function iter(level,path){
 	}
 	for(var i=0;i<contents.length;i++){
 		var file = path + "\\" + contents[i];
-		stats = fs.statSync(file);
-		if(stats.isDirectory()){
-			//console.log(buffer + file);
-			iter(level+1,file);
-		}
-		else{
-			var size = stats["size"];
-			total += size;
-			//console.log(buffer + size);
+		if(!isForbidden(file)){
+			stats = fs.statSync(file);
+			if(stats.isDirectory()){
+				//console.log(buffer + file);
+				iter(level+1,file);
+			}
+			else{
+				var size = stats["size"];
+				total += size;
+				//console.log(buffer + size);
+			}
 		}
 	}
 	if(!level){
 		console.log((total/1024/1024/1024).toFixed(2) + " GB");
 	}
 	
+}
+
+function isForbidden(filePath){
+	var test = filePath.slice(3)
+	if(test == "System Volume Information"){
+		return 1;
+	}
+	return 0;
 }
 
 iter(0,root);
