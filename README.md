@@ -1,12 +1,17 @@
 # DriveSize
 
-Dependencies: Node (obviously), graceful-fs
+A tiny tool that determines the used space that it is permitted to access.
 
-Usage: node DriveSize.js directory_name
+## Installation
 
-Purpose: Determines total size of the directory.
+Run in the cloned directory:
 
-Why: Because I want to, that's why.
+```
+npm install
+```
 
-### Install
-run `npm install` in the cloned directory.
+## Usage
+
+```
+node DriveSize [directory]
+```
